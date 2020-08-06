@@ -7,7 +7,8 @@ const incomeButton = document.querySelector('.income-button');
 const expenseButton = document.querySelector('.expense-button');
 const incomeList = document.querySelector('.income-list');
 const expenseList = document.querySelector('.expense-list');
-
+var budgetValue = document.querySelector('.budget'); 
+var sum = 0;
 
 // Event Listeners
 incomeButton.addEventListener("click", addIncome);
@@ -17,7 +18,7 @@ expenseList.addEventListener("click", deleteCheck)
 
 // Functions
 function addIncome(event) {
-    event.preventDefault(); // prevent form from submitting
+    event.preventDefault(); // prevent form from submitting 
     // income div
     const incomeDiv = document.createElement("div");
     incomeDiv.classList.add("income");
@@ -26,18 +27,23 @@ function addIncome(event) {
     newIncome.innerText = incomeInput.value + ": $" + incomeInputValue.value;
     newIncome.classList.add("income-item");
     incomeDiv.append(newIncome);
-    // check mark button
+    /* not sure I need a checkmark button for income. Add ability to delete income 
+    // checkmark button
     const completedButton = document.createElement('button');
     completedButton.innerHTML = '<i class="fas fa-check"></i>';
     completedButton.classList.add("complete-btn");
     incomeDiv.appendChild(completedButton);
-    // check trash button
+    // trash button
     const trashButton = document.createElement('button');
     trashButton.innerHTML = '<i class="fas fa-trash"></i>';
     trashButton.classList.add("trash-btn");
-    incomeDiv.appendChild(trashButton);
+    incomeDiv.appendChild(trashButton); 
+    */
     // append to list
     incomeList.appendChild(incomeDiv);
+    // update budget
+    sum = sum + parseInt(incomeInputValue.value); 
+    budgetValue.innerText = "$" + sum; // need this line
     // clear income input value after adding it
     incomeInput.value = "";
     incomeInputValue.value = "";
@@ -53,6 +59,7 @@ function addExpense(event) {
     newExpense.innerText = expenseInput.value + ": $" + expenseInputValue.value;
     newExpense.classList.add("expense-item");
     expenseDiv.append(newExpense);
+    /* add ability to mark expenses as completed and ability to delete them
     // check mark button
     const completedButton = document.createElement('button');
     completedButton.innerHTML = '<i class="fas fa-check"></i>';
@@ -63,8 +70,12 @@ function addExpense(event) {
     trashButton.innerHTML = '<i class="fas fa-trash"></i>';
     trashButton.classList.add("trash-btn");
     expenseDiv.appendChild(trashButton);
+    */
     // append to expense list
     expenseList.appendChild(expenseDiv);
+    // update budget
+    sum = sum - parseInt(expenseInputValue.value); 
+    budgetValue.innerText = "$" + sum; // need this line
     // clear expense input value
     expenseInput.value = "";
     expenseInputValue.value = "";
@@ -74,19 +85,19 @@ function deleteCheck(e) {
     const item = e.target;
     // delete todo
     if(item.classList[0] === 'trash-btn'){
-        const todo = item.parentElement;
+        const del = item.parentElement;
         // animation
-        todo.classList.add("fall");
-        todo.addEventListener('transitionend', function(){
+        del.classList.add("fall");
+        del.addEventListener('transitionend', function(){
             // at the end of the "fall" transition it will remove it 
-            todo.remove();
+            del.remove();
         });
     }
 
     // check mark 
     if (item.classList[0] === "complete-btn") {
-        const todo = item.parentElement;
-        todo.classList.toggle("completed");
+        const compl = item.parentElement;
+        compl.classList.toggle("completed");
     }
 
 }
