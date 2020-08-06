@@ -28,6 +28,8 @@ function addIncome(event) {
     newIncome.classList.add("income-item");
     incomeDiv.append(newIncome);
     /* not sure I need a checkmark button for income. Add ability to delete income 
+    i should change the checkmark button to a plus sign like the one in the form and put 
+    it on the far left of created div
     // checkmark button
     const completedButton = document.createElement('button');
     completedButton.innerHTML = '<i class="fas fa-check"></i>';
@@ -60,6 +62,8 @@ function addExpense(event) {
     newExpense.classList.add("expense-item");
     expenseDiv.append(newExpense);
     /* add ability to mark expenses as completed and ability to delete them
+    i should change the checkmark button to a minus sign like the one in the form and put 
+    it on the far left of created div to show i am subtracting money
     // check mark button
     const completedButton = document.createElement('button');
     completedButton.innerHTML = '<i class="fas fa-check"></i>';
