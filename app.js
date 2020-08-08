@@ -9,6 +9,10 @@ const incomeList = document.querySelector('.income-list');
 const expenseList = document.querySelector('.expense-list');
 var budgetValue = document.querySelector('.budget'); 
 var sum = 0;
+var incomeValue = 0;
+var incomeTotal = document.querySelector('.income-total');
+var expenseValue = 0;
+var expenseTotal = document.querySelector('.expense-total');
 
 // Event Listeners
 incomeButton.addEventListener("click", addIncome);
@@ -27,25 +31,13 @@ function addIncome(event) {
     newIncome.innerText = incomeInput.value + ": $" + incomeInputValue.value;
     newIncome.classList.add("income-item");
     incomeDiv.append(newIncome);
-    /* not sure I need a checkmark button for income. Add ability to delete income 
-    i should change the checkmark button to a plus sign like the one in the form and put 
-    it on the far left of created div
-    // checkmark button
-    const completedButton = document.createElement('button');
-    completedButton.innerHTML = '<i class="fas fa-check"></i>';
-    completedButton.classList.add("complete-btn");
-    incomeDiv.appendChild(completedButton);
-    // trash button
-    const trashButton = document.createElement('button');
-    trashButton.innerHTML = '<i class="fas fa-trash"></i>';
-    trashButton.classList.add("trash-btn");
-    incomeDiv.appendChild(trashButton); 
-    */
     // append to list
     incomeList.appendChild(incomeDiv);
     // update budget
     sum = sum + parseInt(incomeInputValue.value); 
-    budgetValue.innerText = "$" + sum; // need this line
+    incomeValue = incomeValue + parseInt(incomeInputValue.value); 
+    budgetValue.innerText = "Total Leftover: $" + sum;
+    incomeTotal.innerText = "Total Income: $" + incomeValue; 
     // clear income input value after adding it
     incomeInput.value = "";
     incomeInputValue.value = "";
@@ -61,47 +53,14 @@ function addExpense(event) {
     newExpense.innerText = expenseInput.value + ": $" + expenseInputValue.value;
     newExpense.classList.add("expense-item");
     expenseDiv.append(newExpense);
-    /* add ability to mark expenses as completed and ability to delete them
-    i should change the checkmark button to a minus sign like the one in the form and put 
-    it on the far left of created div to show i am subtracting money
-    // check mark button
-    const completedButton = document.createElement('button');
-    completedButton.innerHTML = '<i class="fas fa-check"></i>';
-    completedButton.classList.add("complete-btn");
-    expenseDiv.appendChild(completedButton);
-    // check trash button
-    const trashButton = document.createElement('button');
-    trashButton.innerHTML = '<i class="fas fa-trash"></i>';
-    trashButton.classList.add("trash-btn");
-    expenseDiv.appendChild(trashButton);
-    */
     // append to expense list
     expenseList.appendChild(expenseDiv);
     // update budget
     sum = sum - parseInt(expenseInputValue.value); 
-    budgetValue.innerText = "$" + sum; // need this line
+    expenseValue = expenseValue + parseInt(expenseInputValue.value); 
+    budgetValue.innerText = "Total Leftover: $" + sum; 
+    expenseTotal.innerText = "Total Expenses: $" + expenseValue; 
     // clear expense input value
     expenseInput.value = "";
     expenseInputValue.value = "";
-}
-
-function deleteCheck(e) {
-    const item = e.target;
-    // delete todo
-    if(item.classList[0] === 'trash-btn'){
-        const del = item.parentElement;
-        // animation
-        del.classList.add("fall");
-        del.addEventListener('transitionend', function(){
-            // at the end of the "fall" transition it will remove it 
-            del.remove();
-        });
-    }
-
-    // check mark 
-    if (item.classList[0] === "complete-btn") {
-        const compl = item.parentElement;
-        compl.classList.toggle("completed");
-    }
-
 }
