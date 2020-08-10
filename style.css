@@ -9,7 +9,7 @@ body {
     color: teal;
     font-family: 'Poppins', sans-serif;
     min-height: 100vh;
-    margin-bottom: 100px; /* provides some white space on the  bottom*/
+    margin-bottom: 80px; /* provides some white space on the  bottom*/
 }
 
 header {
@@ -81,4 +81,33 @@ form button:hover{
 
 .income-item, .expense-item {
     padding: 0rem 0.5rem;
+}
+
+@media screen and (max-width: 800px) {
+    body {
+        background-color: white;
+        color: teal;
+        font-family: 'Poppins', sans-serif;
+        min-height: 100vh;
+        margin-bottom: 40px; /* provides some white space on the  bottom*/
+    }
+
+    h1 {
+        font-size: 30px;
+    }
+
+    h2 {
+        font-size: 20px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    form input, form button {
+        padding: 0.5rem;
+        font-size: 1rem;
+        border: none;
+        background: white;
+        border: 1px solid teal;
+    }
 }
