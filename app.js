@@ -31,6 +31,11 @@ function addIncome(event) {
     newIncome.innerText = incomeInput.value + ": $" + incomeInputValue.value;
     newIncome.classList.add("income-item");
     incomeDiv.append(newIncome);
+    // create li for value of income
+    const newIncomeAmount = document.createElement('li');
+    newIncomeAmount.innerText = `$${incomeInputValue.value}`;
+    newIncomeAmount.classList.add("income-item");
+    incomeDiv.append(newIncomeAmount);
     // append to list
     incomeList.appendChild(incomeDiv);
     // update budget
@@ -53,6 +58,11 @@ function addExpense(event) {
     newExpense.innerText = expenseInput.value + ": $" + expenseInputValue.value;
     newExpense.classList.add("expense-item");
     expenseDiv.append(newExpense);
+    // create li for value of expense
+    const newExpenseAmount = document.createElement('li');
+    newExpenseAmount.innerText = `$${expenseInputValue.value}`;
+    newExpenseAmount.classList.add("expense-item");
+    expenseDiv.append(newExpenseAmount);
     // append to expense list
     expenseList.appendChild(expenseDiv);
     // update budget
